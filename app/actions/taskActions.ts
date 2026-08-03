@@ -61,3 +61,17 @@ export async function updateTask(formData: FormData) {
 
   redirect("/");
 }
+export async function archiveTask(formData: FormData) {
+  const id = Number(formData.get("id"));
+
+  await prisma.task.update({
+    where: {
+      id,
+    },
+    data: {
+      archived: true,
+    },
+  });
+
+  redirect("/");
+}

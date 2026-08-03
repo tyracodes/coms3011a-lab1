@@ -28,6 +28,12 @@ export default async function Home() {
           >
             + New Task
           </Link>
+          <Link
+  href="/archived"
+  className="rounded-xl bg-purple-300 px-6 py-3 font-semibold text-white transition hover:bg-purple-400"
+>
+  Archived Tasks
+</Link>
 
         </div>
 

@@ -17,3 +17,14 @@ export async function getTaskById(id: number) {
     },
   });
 }
+
+export async function getArchivedTasks() {
+  return prisma.task.findMany({
+    where: {
+      archived: true,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+}
