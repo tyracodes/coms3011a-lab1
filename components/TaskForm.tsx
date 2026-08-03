@@ -1,7 +1,7 @@
 "use client";
 
 import { Calendar } from "lucide-react";
-
+import { createTask } from "../app/actions/taskActions";
 export default function TaskForm() {
 
   const today = new Date().toISOString().split("T")[0];
@@ -13,7 +13,7 @@ export default function TaskForm() {
         Create New Task
       </h2>
 
-      <form className="space-y-6">
+      <form action={createTask} className="space-y-6">
 
         <div>
           <label className="mb-2 block font-medium text-gray-700">
@@ -21,10 +21,12 @@ export default function TaskForm() {
           </label>
 
           <input
+            name="title"
             type="text"
+            required
             placeholder="Enter task name"
             className="w-full rounded-xl border border-pink-200 p-3 focus:border-pink-400 focus:outline-none"
-          />
+        />
         </div>
 
         <div>
@@ -33,6 +35,8 @@ export default function TaskForm() {
           </label>
 
           <textarea
+            name="description"
+            required
             rows={4}
             placeholder="Describe your task..."
             className="w-full rounded-xl border border-pink-200 p-3 focus:border-pink-400 focus:outline-none"
@@ -45,7 +49,9 @@ export default function TaskForm() {
           </label>
 
           <input
+            name="topic"
             type="text"
+            required
             placeholder="Example: University"
             className="w-full rounded-xl border border-pink-200 p-3 focus:border-pink-400 focus:outline-none"
           />
@@ -65,9 +71,11 @@ export default function TaskForm() {
             />
 
             <input
-              type="date"
-              min={today}
-              className="w-full rounded-xl border border-pink-200 p-3 pr-10 focus:border-pink-400 focus:outline-none"
+                name="dueDate"
+                type="date"
+                required
+                min={today}
+                className="w-full rounded-xl border border-pink-200 p-3 pr-10 focus:border-pink-400 focus:outline-none"
             />
 
           </div>
