@@ -2,6 +2,7 @@ import Link from "next/link";
 import TaskCard from "../components/TaskCard";
 import { getActiveTasks } from "../lib/tasks";
 import SortDropdown from "@/components/SortDropdown";
+import { isTaskOverdue } from "@/lib/taskUtils";
 type HomeProps = {
   searchParams: Promise<{
     sort?: string;
@@ -60,9 +61,10 @@ export default async function Home({
           </div>
         ) : (
           tasks.map((task) => {
-            const overdue =
-              task.status !== "Complete" &&
-              new Date(task.dueDate) < new Date();
+            const overdue = isTaskOverdue(
+  new Date(task.dueDate),
+  task.status
+);
 
             return (
               <TaskCard
