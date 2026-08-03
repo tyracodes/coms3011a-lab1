@@ -32,3 +32,32 @@ export async function createTask(formData: FormData) {
 
   redirect("/");
 }
+
+export async function updateTask(formData: FormData) {
+  const id = Number(formData.get("id"));
+
+  const title = formData.get("title")?.toString() ?? "";
+  const description = formData.get("description")?.toString() ?? "";
+  const topic = formData.get("topic")?.toString() ?? "";
+  const dueDate = formData.get("dueDate")?.toString() ?? "";
+  const status = formData.get("status")?.toString() ?? "";
+
+  if (!title || !description || !topic || !dueDate || !status) {
+    throw new Error("Please complete all fields.");
+  }
+
+  await prisma.task.update({
+    where: {
+      id,
+    },
+    data: {
+      title,
+      description,
+      topic,
+      dueDate: new Date(dueDate),
+      status,
+    },
+  });
+
+  redirect("/");
+}
