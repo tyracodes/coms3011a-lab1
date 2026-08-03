@@ -1,4 +1,6 @@
+import Link from "next/link";
 type TaskCardProps = {
+  id: number;
   title: string;
   topic: string;
   dueDate: Date;
@@ -7,6 +9,7 @@ type TaskCardProps = {
 };
 
 export default function TaskCard({
+  id,
   title,
   topic,
   dueDate,
@@ -47,22 +50,33 @@ export default function TaskCard({
 
       <div className="mt-5 flex items-center justify-between">
 
-        <p className="text-sm text-gray-500">
-          📅{" "}
-        {dueDate.toLocaleDateString("en-ZA", {
+  <div>
+
+    <p className="text-sm text-gray-500">
+      📅{" "}
+      {dueDate.toLocaleDateString("en-ZA", {
         day: "numeric",
         month: "long",
         year: "numeric",
-        })}
-        </p>
+      })}
+    </p>
 
-        {overdue && (
-          <span className="rounded-full bg-red-100 px-3 py-1 text-xs font-semibold text-red-600">
-            Overdue
-          </span>
-        )}
+    {overdue && (
+      <span className="mt-2 inline-block rounded-full bg-red-100 px-3 py-1 text-xs font-semibold text-red-600">
+        Overdue
+      </span>
+    )}
 
-      </div>
+  </div>
+
+  <Link
+    href={`/edit-task/${id}`}
+    className="rounded-lg bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700 transition hover:bg-blue-200"
+  >
+    Edit
+  </Link>
+
+</div>
 
     </div>
   );

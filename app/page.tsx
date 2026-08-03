@@ -50,6 +50,7 @@ export default async function Home() {
     return (
       <TaskCard
         key={task.id}
+        id={task.id}
         title={task.title}
         topic={task.topic}
         dueDate={task.dueDate}
