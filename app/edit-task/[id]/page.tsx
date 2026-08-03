@@ -1,3 +1,6 @@
+import { getTaskById } from "@/lib/tasks";
+import { notFound } from "next/navigation";
+
 type Props = {
   params: Promise<{
     id: string;
@@ -7,22 +10,94 @@ type Props = {
 export default async function EditTaskPage({ params }: Props) {
   const { id } = await params;
 
+  const task = await getTaskById(Number(id));
+
+  if (!task) {
+    notFound();
+  }
+
   return (
     <main className="min-h-screen bg-pink-100 p-10">
 
       <div className="mx-auto max-w-3xl rounded-3xl bg-white p-8 shadow-lg">
 
-        <h1 className="mb-6 text-3xl font-bold text-pink-700">
+        <h1 className="mb-8 text-3xl font-bold text-pink-700">
           Edit Task
         </h1>
 
-        <p className="text-lg text-gray-700">
-          Editing task with ID:
-        </p>
+        <form className="space-y-6">
 
-        <p className="mt-2 text-2xl font-bold text-pink-600">
-          {id}
-        </p>
+          <div>
+            <label className="mb-2 block font-medium text-gray-700">
+              Task Name
+            </label>
+
+            <input
+              defaultValue={task.title}
+              type="text"
+              className="w-full rounded-xl border border-pink-200 p-3 focus:border-pink-400 focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <label className="mb-2 block font-medium text-gray-700">
+              Description
+            </label>
+
+            <textarea
+              defaultValue={task.description}
+              rows={4}
+              className="w-full rounded-xl border border-pink-200 p-3 focus:border-pink-400 focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <label className="mb-2 block font-medium text-gray-700">
+              Topic
+            </label>
+
+            <input
+              defaultValue={task.topic}
+              type="text"
+              className="w-full rounded-xl border border-pink-200 p-3 focus:border-pink-400 focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <label className="mb-2 block font-medium text-gray-700">
+              Due Date
+            </label>
+
+            <input
+              defaultValue={task.dueDate.toISOString().split("T")[0]}
+              type="date"
+              className="w-full rounded-xl border border-pink-200 p-3 focus:border-pink-400 focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <label className="mb-2 block font-medium text-gray-700">
+              Status
+            </label>
+
+            <select
+              defaultValue={task.status}
+              className="w-full rounded-xl border border-pink-200 p-3 focus:border-pink-400 focus:outline-none"
+            >
+              <option value="Todo">Todo</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Complete">Complete</option>
+            </select>
+          </div>
+
+          <button
+            type="button"
+            className="w-full rounded-xl bg-pink-400 py-3 font-semibold text-white"
+          >
+            Save Changes
+          </button>
+
+        </form>
 
       </div>
 

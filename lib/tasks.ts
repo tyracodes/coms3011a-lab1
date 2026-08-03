@@ -10,3 +10,10 @@ export async function getActiveTasks() {
     },
   });
 }
+export async function getTaskById(id: number) {
+  return prisma.task.findUnique({
+    where: {
+      id,
+    },
+  });
+}
