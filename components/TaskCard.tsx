@@ -1,7 +1,7 @@
 type TaskCardProps = {
   title: string;
   topic: string;
-  dueDate: string;
+  dueDate: Date;
   status: "Todo" | "In Progress" | "Complete";
   overdue?: boolean;
 };
@@ -48,7 +48,12 @@ export default function TaskCard({
       <div className="mt-5 flex items-center justify-between">
 
         <p className="text-sm text-gray-500">
-          📅 {dueDate}
+          📅{" "}
+        {dueDate.toLocaleDateString("en-ZA", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+        })}
         </p>
 
         {overdue && (

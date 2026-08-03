@@ -1,7 +1,8 @@
 import Link from "next/link";
 import TaskCard from "../components/TaskCard";
-
-export default function Home() {
+import { getActiveTasks } from "../lib/tasks";
+export default async function Home() {
+  const tasks = await getActiveTasks();
   return (
     <main className="min-h-screen bg-pink-100 p-10">
 
@@ -30,27 +31,41 @@ export default function Home() {
 
         </div>
 
-        <TaskCard
-          title="Study COMS3011A"
-          topic="University"
-          dueDate="4 August 2026"
-          status="Todo"
-        />
+        {tasks.length === 0 ? (
 
-        <TaskCard
-          title="Complete Lab Report"
-          topic="Programming"
-          dueDate="1 August 2026"
-          status="In Progress"
-          overdue
-        />
+  <div className="rounded-2xl bg-white p-6 text-center text-gray-500 shadow">
 
-        <TaskCard
-          title="Read Database Notes"
-          topic="Revision"
-          dueDate="6 August 2026"
-          status="Complete"
-        />
+    You haven't created any tasks yet.
+
+  </div>
+
+) : (
+
+  tasks.map((task) => {
+
+    const overdue =
+      task.status !== "Complete" &&
+      new Date(task.dueDate) < new Date();
+
+    return (
+      <TaskCard
+        key={task.id}
+        title={task.title}
+        topic={task.topic}
+        dueDate={task.dueDate}
+        status={
+          task.status as
+            | "Todo"
+            | "In Progress"
+            | "Complete"
+        }
+        overdue={overdue}
+      />
+    );
+
+  })
+
+)}
 
       </div>
 
