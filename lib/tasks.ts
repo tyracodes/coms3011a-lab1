@@ -1,15 +1,18 @@
 import { prisma } from "./prisma";
 
-export async function getActiveTasks() {
+export async function getActiveTasks(
+  sortBy: "dueDate" | "topic" | "status" = "dueDate"
+) {
   return prisma.task.findMany({
     where: {
       archived: false,
     },
     orderBy: {
-      createdAt: "desc",
+      [sortBy]: "asc",
     },
   });
 }
+
 export async function getTaskById(id: number) {
   return prisma.task.findUnique({
     where: {
