@@ -58,14 +58,14 @@ docs/ThirdPartyCode.pdf
 
 Before running this project, install:
 
-- Node.js (Version **REPLACE_WITH_YOUR_NODE_VERSION**)
+- Node.js (Version:v24.14.1 )
 - npm (included with Node.js)
 
 ---
 
 # Clone the Repository
 
-Clone the GitHub repository.
+Clone the GitHub repository.(use command prompt terminal)
 
 ```bash
 git clone https://github.com/tyracodes/coms3011a-lab1.git
