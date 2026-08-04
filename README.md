@@ -182,4 +182,26 @@ Additional documentation is available in the **docs** folder.
 
 # AI Usage
 
-The AI planning, coding and debugging transcripts used during development are included in the **ai** folder, as required by the assignment.
+This folder contains the AI conversation transcripts used during the development of this project.
+
+## Tool
+
+- ChatGPT Web
+
+## Model
+
+- GPT-5.5
+
+## Usage
+
+The AI assistant was used for:
+
+- Project planning
+- Designing the application structure
+- Generating code
+- Explaining concepts
+- Debugging errors
+- Writing documentation
+- Reviewing implementation decisions
+
+All generated code and documentation were reviewed, tested and modified before inclusion in the final submission.
