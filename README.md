@@ -4,109 +4,34 @@
 
 Name: Tyra Mohamed
 
-Course: COMS3011A
+Course: COMS3011A(software design project)
 
 ---
 
-## Project Description
+## Overview
 
-This project is a local-first Todo application built using:
+This project was developed for **COMS3011A Software Design**.
 
-- Next.js
-- TypeScript
-- Prisma
-- SQLite
+It is a **local-first Todo application** built with **Next.js**, **TypeScript**, **Prisma**, and **SQLite**.
 
-The application allows a single user to:
-
-- Create tasks
-- Edit tasks
-- Archive tasks
-- Sort tasks
-- View overdue tasks
-- Save data between application restarts
-
----
-
-## Requirements
-
-Before running the project, install:
-
-- Node.js 20 or later
-- npm
-
----
-
-## Installation
-
-Clone the repository.
-
-```bash
-git clone https://github.com/tyracodes/coms3011a-lab1.git
-```
-
-Go into the project folder.
-
-```bash
-cd coms3011a-lab1
-```
-
-Install the dependencies.
-
-```bash
-npm install
-```
-
-Generate the Prisma client.
-
-```bash
-npx prisma generate
-```
-
-Create the SQLite database.
-
-```bash
-npx prisma db push
-```
-
----
-
-## Run the Application
-
-```bash
-npm run dev
-```
-
-Open:
-
-```
-http://localhost:3000
-```
-
----
-
-## Run the Tests
-
-```bash
-npm test
-```
-
-There are four automated tests.
+The application is designed for a single user running it locally on their own computer. No user accounts or internet connection are required after installation.
 
 ---
 
 ## Features
 
-- Create tasks
-- Edit tasks
-- Archive tasks
+The application allows a user to:
+
+- Create a task
+- Edit an existing task
+- Archive a task (tasks are never deleted)
 - View archived tasks
-- Sort by:
+- Sort tasks by:
+  - Due Date
   - Topic
   - Status
-  - Due Date
-- Overdue tasks are highlighted
-- Data persists after restarting the application
+- Highlight overdue tasks
+- Store all data permanently using SQLite so that tasks remain after restarting the application
 
 ---
 
@@ -118,4 +43,143 @@ There are four automated tests.
 - Prisma ORM
 - SQLite
 - Tailwind CSS
+- Lucide React
 - Vitest
+
+Further information about each dependency can be found in:
+
+```
+docs/ThirdPartyCode.pdf
+```
+
+---
+
+# Prerequisites
+
+Before running this project, install:
+
+- Node.js (Version **REPLACE_WITH_YOUR_NODE_VERSION**)
+- npm (included with Node.js)
+
+---
+
+# Clone the Repository
+
+Clone the GitHub repository.
+
+```bash
+git clone https://github.com/tyracodes/coms3011a-lab1.git
+```
+
+Move into the project folder.
+
+```bash
+cd coms3011a-lab1
+```
+
+---
+
+# Install Dependencies
+
+Install all required packages.
+
+```bash
+npm install
+```
+
+---
+
+# Generate the Prisma Client
+
+```bash
+npx prisma generate
+```
+
+---
+
+# Create the SQLite Database
+
+Create the local SQLite database.
+
+```bash
+npx prisma db push
+```
+
+---
+
+# Run the Application
+
+Start the development server.
+
+```bash
+npm run dev
+```
+
+Open the application in your browser.
+
+```
+http://localhost:3000
+```
+
+---
+
+# Run the Automated Tests
+
+Run all automated tests.
+
+```bash
+npm test
+```
+
+There are four automated tests included in the project.
+
+---
+
+# Project Structure
+
+```
+coms3011a-lab1
+│
+├── ai
+│   └── AI conversation transcripts
+│
+├── app
+│   └── Next.js pages and server actions
+│
+├── components
+│   └── Reusable React components
+│
+├── docs
+│   ├── DatabaseDesign.pdf
+│   ├── RunningIt.pdf
+│   └── ThirdPartyCode.pdf
+│
+├── lib
+│   └── Database and application logic
+│
+├── prisma
+│   ├── schema.prisma
+│   ├── dev.db
+│   └── test.db
+│
+├── tests
+│   └── Automated tests
+│
+└── README.md
+```
+
+---
+
+# Documentation
+
+Additional documentation is available in the **docs** folder.
+
+- Database Design
+- Third-Party Code
+- Running the Application
+
+---
+
+# AI Usage
+
+The AI planning, coding and debugging transcripts used during development are included in the **ai** folder, as required by the assignment.
