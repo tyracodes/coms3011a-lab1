@@ -2,7 +2,10 @@
 
 import { prisma } from "../../lib/prisma";
 import { redirect } from "next/navigation";
-
+import {
+  createTaskInDatabase,
+  archiveTaskInDatabase,
+} from "@/lib/taskService";
 export async function createTask(formData: FormData) {
   const title = formData.get("title");
   const description = formData.get("description");
@@ -20,15 +23,12 @@ export async function createTask(formData: FormData) {
     throw new Error("Please complete all fields.");
   }
 
-  await prisma.task.create({
-    data: {
-      title: title.toString(),
-      description: description.toString(),
-      topic: topic.toString(),
-      dueDate: new Date(dueDate.toString()),
-      status: "Todo",
-    },
-  });
+  await createTaskInDatabase({
+  title: title.toString(),
+  description: description.toString(),
+  topic: topic.toString(),
+  dueDate: new Date(dueDate.toString()),
+});
 
   redirect("/");
 }
@@ -64,14 +64,7 @@ export async function updateTask(formData: FormData) {
 export async function archiveTask(formData: FormData) {
   const id = Number(formData.get("id"));
 
-  await prisma.task.update({
-    where: {
-      id,
-    },
-    data: {
-      archived: true,
-    },
-  });
+  await archiveTaskInDatabase(id);
 
   redirect("/");
 }
